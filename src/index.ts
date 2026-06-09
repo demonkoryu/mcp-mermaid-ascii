@@ -16,10 +16,18 @@ function renderMermaid(
 ): Promise<string> {
    return new Promise((resolve, reject) => {
       const args = ["-f", "-"];
-      if (opts.ascii) args.push("--ascii");
-      if (opts.paddingX !== undefined) args.push("-x", String(opts.paddingX));
-      if (opts.paddingY !== undefined) args.push("-y", String(opts.paddingY));
-      if (opts.borderPadding !== undefined) args.push("-p", String(opts.borderPadding));
+      if (opts.ascii) {
+         args.push("--ascii");
+      }
+      if (opts.paddingX !== undefined) {
+         args.push("-x", String(opts.paddingX));
+      }
+      if (opts.paddingY !== undefined) {
+         args.push("-y", String(opts.paddingY));
+      }
+      if (opts.borderPadding !== undefined) {
+         args.push("-p", String(opts.borderPadding));
+      }
 
       const child = execFile(BINARY, args, { timeout: 15_000 }, (err, stdout, stderr) => {
          if (err) {
